@@ -1,0 +1,122 @@
+﻿@page "/04ArrayMinMax"
+
+<PageTitle>Minimum and Maximum</PageTitle>
+<h1>Minimum and Maximum</h1>
+<p>
+You can try to enter integers, real numbers and texts that are not numbers at all.
+</p>
+<table>
+    <tr>
+        <td>First argument:</td>
+        <td><input style="text-align:right" @bind="elements[0]"/></td>
+    </tr>
+    <tr>
+        <td>Second argument:</td>
+        <td><input style="text-align:right" @bind="elements[1]"/></td>
+    </tr>
+    <tr>
+        <td>Third argument:</td>
+        <td><input style="text-align:right" @bind="elements[2]"/></td>
+    </tr>
+    <tr>
+        <td>Fourth argument:</td>
+        <td><input style="text-align:right" @bind="elements[3]"/></td>
+    </tr>
+    <tr>
+        <td>Fifth argument:</td>
+        <td><input style="text-align:right" @bind="elements[4]"/></td>
+    </tr>
+    <tr>
+        <td>Sixth  argument:</td>
+        <td><input style="text-align:right" @bind="elements[5]"/></td>
+    </tr>
+    <tr>
+        <td>Seventh  argument:</td>
+        <td><input style="text-align:right" @bind="elements[6]"/></td>
+    </tr>
+    <tr>
+        <td>Eighth  argument:</td>
+        <td><input style="text-align:right" @bind="elements[7]"/></td>
+    </tr>
+    
+    <tr>
+        <td style="text-align:center" colspan="2">
+            <button class="btn btn-primary" @onclick="Minimum">Determine Minimum</button> &nbsp; 
+            <button class="btn btn-primary" @onclick="Maximum">Determine Maximum</button> &nbsp;
+            <button class="btn btn-primary" @onclick="Average">Determine Average</button> &nbsp;
+            <button class="btn btn-primary" @onclick="ApproachAverageCount">Determine Approach To Average</button> &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td>Result:</td>
+        <td><input style="text-align:right" @bind="result"/></td>
+    </tr>
+</table>
+<br/>
+@code {
+
+    private double[] elements = {-4, 2.6, 1, 0.2, 5, 2, -3, -5.2 };
+    private double result;
+
+    private double Min(double[] arr)
+    {
+        double res = arr[0];
+        foreach(double x in arr)
+        {
+            if (x < res)
+                res = x;
+        }
+        return res;
+    }
+
+    private double Max(double[] arr)
+    {
+        double res = arr[0];
+        foreach (double x in arr)
+        {
+            if (x > res)
+                res = x;
+        }
+        return res;
+    }
+
+    private double Average(double[] arr)
+    {
+        return arr.Average();
+    }
+
+    private double ApproachAverageCount(double[] arr)
+    {
+        double res = arr[0];
+        double average = arr.Average();
+        double differenceMin = 0;
+        foreach (double x in arr)
+        {
+            double difference = x > average ? x - average : average - x;
+            if (difference < differenceMin)
+            {
+                res = x;
+                differenceMin = difference;
+            }
+        }
+        return res;
+    }
+
+    private void Minimum()
+    {
+        result = Min(elements);
+    }
+
+    private void Maximum()
+    {
+        result = Max(elements);
+    }
+    private void Average()
+    {
+        result = Average(elements);
+    }
+    private void ApproachAverageCount()
+    {
+        result = ApproachAverageCount(elements);
+    }
+}

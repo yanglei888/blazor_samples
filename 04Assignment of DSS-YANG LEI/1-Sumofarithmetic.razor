@@ -1,0 +1,136 @@
+﻿@page "/01SumofArithmetic"
+
+<PageTitle>Sum</PageTitle>
+<h1>Sum of Arithmetic</h1>
+<br/>
+<table>
+    <tr>
+        <td>FirstNum:</td>
+        <td>
+            <input style="text-align:right" @bind="num1" />
+        </td>
+    </tr>
+    <tr>
+        <td>Target:</td>
+        <td>
+            <input style="text-align:right" @bind="num2" />
+        </td>
+    </tr>
+    <tr>
+        <td>Size:</td>
+        <td>
+            <input style="text-align:right" @bind="num3" />
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align:center" colspan="2">
+            <button title="by forward counting" @onclick="Sumofarithmetic">Sumfor</button> &nbsp;
+            <button title="by backward counting" @onclick="Sumofarithmetic">Sumwhile</button> &nbsp;
+            <button title="by decrementing" @onclick="Sumofarithmetic">Sumforwhile</button> &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td>Sum:</td>
+        <td><input style="text-align:right" @bind="result" /></td>
+    </tr>
+</table> 
+<br/>
+
+@code {
+
+    private int num1 = 0;
+    private int num2 = 0;
+    private int num3 = 0;
+
+    private long result = 0;
+
+    private  void Sumofarithmetic()
+    {
+        Console.WriteLine("Sumofarithmetic");
+        int a = num1;
+        Console.WriteLine("FirstNum: " + a);
+        Console.WriteLine("Sumofarithmetic");
+        int b = num2;
+        Console.WriteLine("Target: " + b);
+        Console.WriteLine("Sumofarithmetic");
+        int c = num3;
+        Console.WriteLine("Size: " + c);
+        if (c<0)
+        {
+            Console.WriteLine("Error - Size is negative.");
+            result = long.MinValue;
+            return;
+        }
+        int i = 1;
+        long sum = 0;
+        while (i <= c)
+        {
+            sum = sum + a;
+            a = a + b;
+            i++;
+        }
+        result = sum;
+        System.Console.WriteLine("Sum: " + result);
+        System.Console.WriteLine();
+    }
+
+    private void  FactorialByCountBackward()
+    {
+        Console.WriteLine("Sumofarithmetic");
+        int a = num1;
+        Console.WriteLine("FirstNum: " + a);
+        Console.WriteLine("Sumofarithmetic");
+        int b = num2;
+        Console.WriteLine("Target: " + b);
+        Console.WriteLine("Sumofarithmetic");
+        int c = num3;
+        Console.WriteLine("Size: " + c);
+        if (c < 0)
+        {
+            Console.WriteLine("Error - Size is negative.");
+            result = long.MinValue;
+            return;
+        }
+        long fakt = 0;
+        int i = 1;
+        do
+        {
+            fakt += a;
+            a += b;
+            i++;
+        }
+        while (i <= c);
+        result = fakt;
+        System.Console.WriteLine("Result: " + result);
+        System.Console.WriteLine();
+    }
+
+    private  void FactorialByDecrementing()
+    {
+        Console.WriteLine("Sumofarithmetic");
+        int a = num1;
+        Console.WriteLine("FirstNum: " + a);
+        Console.WriteLine("Sumofarithmetic");
+        int b = num2;
+        Console.WriteLine("Target: " + b);
+        Console.WriteLine("Sumofarithmetic");
+        int c = num3;
+        Console.WriteLine("Size: " + c);
+        if (c < 0)
+        {
+            Console.WriteLine("Error - Size is negative.");
+            result = long.MinValue;
+            return;
+        }
+        long fakt = 0;
+        for (int i = 1; i <= c; i++)
+        {
+            fakt += a;
+            a += b;
+        }
+        result = fakt;
+        System.Console.WriteLine("Result: " + result);
+        System.Console.WriteLine();
+    }
+
+}

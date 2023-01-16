@@ -1,0 +1,104 @@
+﻿@page "/03ArrayIteration"
+
+<PageTitle>Arrays - iteration</PageTitle>
+<h1>Arrays - iteration</h1>
+<br/>
+<button class="btn btn-primary" @onclick="Execute">Do It!</button>
+<br/>
+Source:
+<br/>
+<div style="border:solid; border-color:black">
+  <pre>@message</pre>
+</div>
+<br/>
+Output:
+<br/>
+<div style="border:solid; border-color:black">
+  <pre>@messageOut</pre>
+</div>
+@code {
+    private string message = "";
+    private string messageOut = "";
+    private void Execute()
+    {
+        byte[] bytA = new byte[10];
+        bytA[2] = 45;
+        bytA[7] = 42;
+        message += "byteA: ";
+        for (int i=0; i<bytA.Length; i++)
+        {
+            message += bytA[i] + " ";
+        }
+        message += Environment.NewLine;
+        Console.WriteLine(message);
+        //
+        messageOut += "byteA: ";
+        for (int i=bytA.Length-1; i>=0; i--)
+        {
+            messageOut += bytA[i] + " ";
+        }
+        messageOut += Environment.NewLine;
+        Console.WriteLine(messageOut);
+
+        String spec = " special";
+        String[] seasons = { " spring", " autumn", spec + " winter", " summer" };
+        message += "seasons: ";
+        for (int i = 0; i < seasons.Length; i++)
+        {
+            message += "'" + seasons[i] + "' ";
+        }
+        message += Environment.NewLine;
+        Console.WriteLine(message);
+        //
+        messageOut += "seasons: ";
+        for (int i = seasons.Length-1; i >=0; i--)
+        {
+            messageOut += "'" + seasons[i] + "' ";
+        }
+        messageOut += Environment.NewLine;
+        Console.WriteLine(messageOut);
+
+        int[] arr = { 24, 48, 96, 192, 36, 72, 144 };
+        message += "arr: ";
+        foreach (int x in arr)
+        {
+            message += x + " ";
+        }
+        message += Environment.NewLine;
+        Console.WriteLine(message);
+        //
+        messageOut += "arr: ";
+        string messageOutTemp = "";
+        foreach (int x in arr)
+        {
+            messageOutTemp = x + " " + messageOutTemp;
+        }
+        messageOut += messageOutTemp;
+        messageOut += Environment.NewLine;
+        Console.WriteLine(messageOut);
+
+        string[] strA = new string[40];
+        strA[2] = "mickey";
+        strA[3] = "mouse";
+        strA[4] = "donald";
+        strA[5] = "duck";
+        strA[6] = "goofy";
+        message += "strA: ";
+        foreach (string s in strA)
+        {
+            message += "'" + s + "' ";
+        }
+        message += Environment.NewLine;
+        Console.WriteLine(message);
+        //
+        messageOut += "strA: ";
+        messageOutTemp = "";
+        foreach (string s in strA)
+        {
+            messageOutTemp = "'" + s + "' " + messageOutTemp;
+        }
+        messageOut += messageOutTemp;
+        messageOut += Environment.NewLine;
+        Console.WriteLine(messageOut);
+    }
+}
